@@ -1,6 +1,5 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { GraphQLClient } from 'graphql-request';
+import { getSdk } from '~/libs/generated/client';
 
-export const graphqlClient = new ApolloClient({
-  uri: 'http://localhost:3000/graphql',
-  cache: new InMemoryCache()
-});
+const graphqlClient = new GraphQLClient('http://localhost:3000/graphql');
+export const sdk = getSdk(graphqlClient);

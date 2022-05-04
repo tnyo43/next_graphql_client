@@ -2,11 +2,9 @@ type User {
   id: Int!
   name: String!
   email: String!
-  createdAt: String!
-  updatedAt: String!
 }
 
 type Query {
-  fetchUserList(name: String): [User]!
+  fetchUserList(name: String): [User!]!
   fetchUser(id: Int!): User
 }

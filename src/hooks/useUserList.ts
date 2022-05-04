@@ -1,27 +1,17 @@
-import { useQuery, gql } from '@apollo/client';
-
-type User = {
-  id: number;
-  name: string;
-  email: string;
-};
-
-const FETCH_USER_LIST = gql`
-  query fetchUserList($name: String) {
-    fetchUserList(user: { name: $name }) {
-      id
-      name
-      email
-    }
-  }
-`;
+import { useEffect, useState } from 'react';
+import { sdk } from '~/apis/gql';
+import { User } from '~/libs/generated/client';
 
 export const useUserList = () => {
-  const { loading, data } = useQuery<{ fetchUserList: User[] }, {}>(
-    FETCH_USER_LIST
-  );
+  const [result, setResult] = useState<User[]>();
 
-  console.log(loading, data);
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await sdk.fetchUserList({});
+      setResult(response.fetchUserList);
+    };
+    fetch();
+  }, []);
 
-  return { loading, data };
+  return { loading: result === undefined, data: result };
 };
