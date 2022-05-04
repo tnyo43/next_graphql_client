@@ -13,3 +13,19 @@ query fetchUser($id: Int!) {
     email
   }
 }
+
+mutation createUser($name: String!, $email: String!) {
+  createUser(name: $name, email: $email) {
+    id
+    name
+    email
+  }
+}
+
+mutation updateUserName($id: Int!, $name: String, $email: String) {
+  updateUser(id: $id, name: $name, email: $email) {
+    id
+    name
+    email
+  }
+}
