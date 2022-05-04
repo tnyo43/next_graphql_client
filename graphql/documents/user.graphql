@@ -1,0 +1,15 @@
+query fetchUserList($name: String) {
+  fetchUserList(name: $name) {
+    id
+    name
+    email
+  }
+}
+
+query fetchUser($id: Int!) {
+  fetchUser(id: $id) {
+    id
+    name
+    email
+  }
+}
